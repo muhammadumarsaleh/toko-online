@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -13,5 +15,9 @@ use App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/login', [AuthController::Class, 'index']);
+Route::get('/register', [AuthController::Class, 'register']);
+
 
 Route::get('/', [DashboardController::Class, 'index']);
