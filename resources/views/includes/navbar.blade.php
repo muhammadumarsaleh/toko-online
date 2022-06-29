@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Offcanvas navbar</a>
+    <a class="navbar-brand" href="#">Toko Online</a>
     <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -16,22 +16,40 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Profile</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown01">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li> --}}
       </ul>
-      <form class="d-flex">
+
+      @auth
+      <div class="nav-item dropdown d-flex">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Welcome, {{ auth()->user()->name }}
+        </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/"><i class="bi bi-person-circle"></i>Profil</a></li>
+            <form action="/logout" method="POST">
+              @csrf
+              <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>Logout</button>
+              <li>
+                
+              </li>
+            </form>
+          </ul>
+      </div>
+      @endauth
+
+
+      {{-- <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> --}}
+      
     </div>
   </div>
 </nav>

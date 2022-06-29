@@ -91,4 +91,5 @@ body {
 
 .form-registration input{
   border-radius: 0;
+  margin-bottom: -1px;
 }

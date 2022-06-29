@@ -16,8 +16,12 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/login', [AuthController::Class, 'index']);
-Route::get('/register', [AuthController::Class, 'register']);
+Route::get('/login', [AuthController::Class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::Class, 'authenticate']);
+Route::post('/logout', [AuthController::Class, 'logout']);
+
+Route::get('/register', [AuthController::Class, 'register'])->middleware('guest');
+Route::post('/register', [AuthController::Class, 'store'])->name('register.store');
 
 
-Route::get('/', [DashboardController::Class, 'index']);
+Route::get('/', [DashboardController::Class, 'index'])->middleware('auth');
