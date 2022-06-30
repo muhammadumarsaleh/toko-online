@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
@@ -25,3 +26,5 @@ Route::post('/register', [AuthController::Class, 'store'])->name('register.store
 
 
 Route::get('/', [DashboardController::Class, 'index'])->middleware('auth');
+Route::get('/order/{id}', [OrderController::class, 'index']);
+Route::post('/order/{id}', [OrderController::class, 'pesan']);

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->date('tanggal');
+            $table->string('status');
             $table->integer('total_harga');
             $table->timestamps();
         });
