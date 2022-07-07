@@ -21,7 +21,7 @@
             <strong>Keterangan</strong> <br>
             {{ $product->keterangan }}
           </p>
-          <a href="/order/{{ $product->id }}" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i>Pesan</a>
+          <a href="/order/{{ $product->id }}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>
         </div>
       </div>
     </div>

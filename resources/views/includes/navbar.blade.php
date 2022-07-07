@@ -26,16 +26,33 @@
         </li> --}}
       </ul>
 
+
       @auth
+      <?php
+        $pesanan_utama = \App\Models\Order::where('user_id', Auth::user()->id)->where('status',0)->first();
+        if(!empty($pesanan_utama)){
+          $notif = \App\Models\OrderDetail::where('order_id', $pesanan_utama->id)->count();
+        }
+        
+      ?>
+      <li class="nav-item d-flex">
+        <a class="nav-link" href="/checkout">  
+          <i class="fa fa-shopping-cart"></i>
+          @if (!empty($notif))
+          <span class="badge badge-danger">{{ $notif }}</span>
+          @endif
+        </a>
+      </li>
       <div class="nav-item dropdown d-flex">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Welcome, {{ auth()->user()->name }}
         </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/"><i class="bi bi-person-circle"></i>Profil</a></li>
+            <li><a class="dropdown-item" href="/profile">Profil</a></li>
+            <li><a class="dropdown-item" href="/history">Riwayat Pemesanan</a></li>
             <form action="/logout" method="POST">
               @csrf
-              <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>Logout</button>
+              <button type="submit" class="dropdown-item">Logout</button>
               <li>
                 
               </li>
@@ -64,9 +81,6 @@
     <a class="nav-link" href="#">Explore</a>
     <a class="nav-link" href="#">Suggestions</a>
     <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
+    
   </nav>
 </div>

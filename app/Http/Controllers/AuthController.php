@@ -37,7 +37,7 @@ class AuthController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
-
+   
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
@@ -52,6 +52,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 }

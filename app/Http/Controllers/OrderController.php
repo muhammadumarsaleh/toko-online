@@ -23,7 +23,7 @@ class OrderController extends Controller
         $product = Product::where('id', $id)->first();
         $tanggal = Carbon::now();
 
-        // validasin apakah melebihi stok
+        // validasi apakah melebihi stok
         if($request->jumlah_pesan > $product->stok)
         {
             return redirect('order/'.$id);
@@ -39,6 +39,7 @@ class OrderController extends Controller
             $order->tanggal = $tanggal;
             $order->status = 0;
             $order->total_harga = 0;
+            $order->kode = mt_rand(100, 999);
             $order->save();
         }
 
@@ -48,17 +49,17 @@ class OrderController extends Controller
         // cek order detail
         $cek_order_details = OrderDetail::where('product_id', $product->id)->where('order_id', $new_order->id)->first();
 
-        if(empty($cek_order_detail))
+        if(empty($cek_order_details))
         {
             $order_details = new OrderDetail;
             $order_details->product_id = $product->id;
             $order_details->order_id = $new_order->id;
             $order_details->jumlah = $request->jumlah_pesan;
-            $order_details->jumlah_harga = $product->harga * $request->jumlah_pesan;
+            $order_details->jumlah_harga = $product->harga*$request->jumlah_pesan;
             $order_details->save();
         }else{
             $order_details = OrderDetail::where('product_id', $product->id)->where('order_id', $new_order->id)->first();
-            $order_details->jumlah = $order_details->jumlah + $request->jumlah_pesan;
+            $order_details->jumlah = $order_details->jumlah+$request->jumlah_pesan;
             
             // harga sekarang
             $harga_order_details_baru = $product->harga*$request->jumlah_pesan;
@@ -75,7 +76,7 @@ class OrderController extends Controller
 
         
 
-        return redirect('/');
+        return redirect('checkout');
 
     }
 }
