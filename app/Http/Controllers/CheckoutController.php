@@ -51,18 +51,19 @@ class CheckoutController extends Controller
         }
 
         $order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        $order_id = $order->id;
+        // $order_id = $order->id;
         $order->status = 1;
-        $order->update(); 
+        $order->update();
+
         
-        $orderDetails = OrderDetail::where('order_id', $order_id)->get();
+        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
         foreach ($orderDetails as $orderDetail) {
             $product = Product::where('id', $orderDetail->product_id)->first();
             $product->stok = $product->stok-$orderDetail->jumlah;
             $product->update();
         }
 
-        return redirect('/history/.$order_id');
+        return redirect('/history/.$order->id');
 
     }
 }

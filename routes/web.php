@@ -20,15 +20,14 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/login', [AuthController::Class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::Class, 'authenticate']);
-Route::post('/logout', [AuthController::Class, 'logout']);
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticate']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::get('/register', [AuthController::Class, 'register'])->middleware('guest');
-Route::post('/register', [AuthController::Class, 'store'])->name('register.store');
+Route::get('/register', [AuthController::class, 'register'])->middleware('guest');
+Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
-
-Route::get('/', [DashboardController::Class, 'index'])->middleware('auth');
+Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/order/{id}', [OrderController::class, 'index'])->middleware('auth');
 Route::post('/order/{id}', [OrderController::class, 'pesan'])->middleware('auth');
 

@@ -18,9 +18,10 @@ class HistoryController extends Controller
     }
 
     public function detail($id){
+
         $order = Order::where('id', $id)->first();
         $orderDetails = OrderDetail::where('order_id', $order->id)->get();
-
+        
         return view('pages.history.detail', compact('order', 'orderDetails'));
     }
 }

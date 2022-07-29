@@ -29,7 +29,7 @@ class OrderController extends Controller
             return redirect('order/'.$id);
         }
 
-        // cek validasi
+        // cek validasi ketersediaan pesanan user belum checkout
         $cek_order = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
         if(empty($cek_order))
         {
@@ -76,7 +76,7 @@ class OrderController extends Controller
 
         
 
-        return redirect('checkout');
+        return redirect('/checkout');
 
     }
 }

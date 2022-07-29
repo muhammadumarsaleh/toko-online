@@ -42,19 +42,19 @@
                                         <td>{{ $product->keterangan }}</td>
                                     </tr>
                                    
-                                        <tr>
-                                            <td>Jumlah Pesan</td>
-                                            <td>:</td>
-                                            <td>
-                                                <form action="/order/{{ $product->id }}" method="POST">
-                                                @csrf
-                                                    <input type="text" name="jumlah_pesan" class="form-control" required placeholder="jumlah..">
-                                                    <button type="submit" class="btn btn-primary mt-2"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
-                                                </form>
-                                            </td>
-                                        </tr>         
-                                </tbody>
-                            </table>
+                                    <tr>
+                                        <td>Jumlah Pesan</td>
+                                        <td>:</td>
+                                        <td>
+                                            <form action="/order/{{ $product->id }}" method="POST">
+                                            @csrf
+                                                <input type="text" name="jumlah_pesan" class="form-control" required placeholder="jumlah..">
+                                                <button type="submit" class="btn btn-primary mt-2"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
+                                            </form>
+                                        </td>
+                                    </tr>         
+                            </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>

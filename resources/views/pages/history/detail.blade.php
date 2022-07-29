@@ -17,7 +17,7 @@
             </nav>
         </div>
         <div class="col-md-12">
-            <div class="card">
+            <div class="card"> 
                 <div class="card-body">
                     <h3>Sukses Check Out</h3>
                     <h5>Pesanan anda sudah sukses dicheck out selanjutnya untuk pembayaran silahkan transfer di rekening <strong>Bank BRI Nomer Rekening : 32113-821312-123</strong> dengan nominal : <strong>Rp. {{ number_format($order->kode+$order->total_harga) }}</strong></h5>
